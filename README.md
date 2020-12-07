@@ -176,6 +176,13 @@ The code for the 3-stage simple RISC-V Core can be found [here](Day3_5/riscv_cor
   
   <img src="images/my_core.svg">
   
+  ## Code Comparison
+  The SandPiper Compiler generated ~90,000 characters of SystemVerilog from ~25,000 characters of TL-Verilog. Among the ~90,000 characters of SystemVerilog, only ~18,000 is actual logic.
+  
+  The snippet below shows the code comparison of TL-Verilog and SystemVerilog.
+  
+  <img src="images/code_compare.JPG" height="500">
+  
 # Future Work
   The implemented core only support the RV32I Base Integer Instrcution Set. The design will further be modified for adding supports for all other operations and extensions like C, M, F.
   
