@@ -48,6 +48,9 @@ Below images show the toolchain implementaion for a small c program for sum of f
       ![assembly_code](Day2/d2_ss1.JPG)
 
 # Application Binary Interface
+Every application program runs in a particular environment, which "Application Execution Environment". How the application interfaces with the underlying execution environment is called the "Application Binary Interface (ABI)". 
+The Application Binary Interface is the sum total of what the application programmer needs to understand in order to write programs; the programmer does not have to understand or know what is going on within the Application Execution Environment.
+An Application Binary Interface would combine the processor ISA along with the OS system-call interface
 
 # RTL Design Using TL-Verilog and MakerChip
 
