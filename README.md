@@ -15,6 +15,7 @@
   - [Pipelined RISC-V Core](#pipelined-risc-v-core)
   - [Final 4-Stage RISC-V Core](#final-4-stage-risc-v-core)
       - [Final RISC-V Core](#final-risc-v-core)
+      - [Code Comparison](#code-comparison)
   - [Future Work](#future-work)
   - [References](#references)
   - [Acknowledgement](#acknowledgement)
