@@ -1,4 +1,5 @@
 # 4-stage RISC-V Core
+  This repository contains all the information and codes of the 4-stage Pipelined RISC-V Core designed during the [RISC-V MYTH Workshop](https://github.com/stevehoover/RISC-V_MYTH_Workshop). The core supports the RV32I Base Integer Instruction Set and it is developed in [TL-Verilog](http://tl-x.org/) using [Makerchip](https://makerchip.com/).
 
 # Table of Contents
   - [Introduction To RISC-V ISA](#Introduction-to-risc-v-isa)
