@@ -9,7 +9,13 @@
       - [Pipelining the Calculator](#pipelining-the-calculator)
       - [Adding Validity to Calculator](#adding-validity-to-calculator)
   - [Basic RISC-V Core](#basic-risc-v-core)
+      - [Program Counter and Instruction Fetch](#program-counter-and-instruction-fetch)
+      - [Instruction Decode and Read Register File](#instruction-decode-and-read-register-file)
+      - [Execute Instruction and Write Register File](#execute-instruction-and-write-register-file)
   - [Pipelined RISC-V Core](#pipelined-risc-v-core)
+  - [Final 4-Stage RISC-V Core](#final-4-stage-risc-v-core)
+  - [Future Work](#future-work)
+      - [Decompress Logic RV32C]
   - [Acknowledgement](#acknowledgement)
 
 # Introduction To RISC-V ISA
@@ -128,4 +134,49 @@ Following are some unique features of TL-Verilog :
    
    <img src="images/rv_execute_rf.JPG" height="500">
 
+The code for the 3-stage simple RISC-V Core can be found [here](Day3_5/riscv_core_without_pipelining.tlv)
+
 # Pipelined RISC-V Core
+  Pipelining processes increases the overall performance of the system. Thus, the previously designed cores can be pipelined. The "Timing Abstraction" feature of TL-Verilog makes it easy.
+  
+  ## Pipelining the Core
+  Pipelining in TL-Verilog can be done in following way:
+  
+    |<pipe_name>
+    @<pipe_stage>
+       Instructions present in this stage
+    @<pipe_stage>
+       Instructions present in this stage
+  
+  The are various hazards to be taken into consideration while implementing a pipelined design. Some of hazards taken under consideration are:
+   - Improper Updation of Program Counter (PC)
+   - Read-before-Write Hazard
+   
+  ## Load and Store Data
+  A Data memory can be added to the Core. The Load-Store operations will add up a new stage to the core. Thus making it now a 4-Stage Core / CPU.
+  
+  The proper functioning of the RISC-V core can ensured by introducing some testcases to the code. 
+  For example, if program for summation of positive integers from 1 to 9 and storing it to specific register can be verified by:
+  
+      *passed = |cpu/xreg[17]>>5$value == (1+2+3+4+5+6+7+8+9);
+      
+   Here, `xreg[17]` is the register holding the final result.
+   
+# Final 4-Stage RISC-V Core
+  After pipelining is proved in simulations, the operations for Jump Instructions are added. Also, added Instruction Decode and ALU Implementation for RV32I Base Integer Instruction Set.
+  
+  The snippet below shows the successful implementation of 4-stage RISC-V Core
+  
+  <img src="images/final_core.JPG" height="500">
+  
+  The complete TL-Verilog code for 4-Stage RISC-V Core can be found [here](Day3_5/risc-v_solutions.tlv) 
+  
+  ## Final RISC-V Core
+  
+  <img src="images/my_core.svg">
+  
+# Future Work
+
+# References
+
+# Acknowledgement
