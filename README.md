@@ -15,7 +15,7 @@
   - [Pipelined RISC-V Core](#pipelined-risc-v-core)
   - [Final 4-Stage RISC-V Core](#final-4-stage-risc-v-core)
   - [Future Work](#future-work)
-      - [Decompress Logic RV32C]
+  - [References](#references)
   - [Acknowledgement](#acknowledgement)
 
 # Introduction To RISC-V ISA
@@ -176,7 +176,11 @@ The code for the 3-stage simple RISC-V Core can be found [here](Day3_5/riscv_cor
   <img src="images/my_core.svg">
   
 # Future Work
+  The implemented core only support the RV32I Base Integer Instrcution Set. The design will further be modified for adding supports for all other operations and extensions like C, M, F.
+  
+  The decompress and decode logic for RV32C (extension C) is already been added to the design. The code can be found [here](Day3_5/riscv_core_with_compressed_instructions.tlv)
 
 # References
+  - RISC-V ISA User Manual https://github.com/riscv/riscv-isa-manual/
 
 # Acknowledgement
