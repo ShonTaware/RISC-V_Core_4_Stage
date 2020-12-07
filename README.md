@@ -1,5 +1,11 @@
-# RISC-V_MYTH_Workshop
+# 4-stage RISC-V Core
 
-For students of "Microprocessor for You in Thirty Hours" Workshop, offered by for VLSI System Design (VSD) and Redwood EDA, find here accompanying live info and links.
+## Introduction To RISC-V ISA
+RISC-V is a new ISA that's available under open, free and non-restrictive licences. RISC-V ISA delivers a new level of free, extensible software and hardware freedom on architecture.
 
-Check the folders for assignments for particular days.
+### Why RISC-V?
+  - Far simple and smaller than commercial ISAs.
+  - Avoids micro-architecture or technology dependent features.
+  - Small standard base ISA.
+  - Multiple Standard Extensions.
+  - Variable-length instruction encoding
