@@ -59,6 +59,35 @@ An Application Binary Interface would combine the processor ISA along with the O
 # RTL Design Using TL-Verilog and MakerChip
 [Makerchip](http://makerchip.com/) is a free online environment for developing high-quality integrated circuits. You can code, compile, simulate, and debug Verilog designs, all from your browser. Your code, block diagrams, and waveforms are tightly integrated.
 
+Following are some unique features of TL-Verilog :
+  - Supports "Timing Abstraction"
+  - Easy Pipelining
+  - TL-Verilog removes the need always blocks, flip-flops.
+  - Compiler available converts TL-Verilog to Verilog, which can be easily synthesized.
+
+    <img src="http://makerchip.com/assets/homepage/MakerchipSplash.png" height="500">
+
+  ## Designing a Simple Calculator
+  A simple implementation of a single stage basic calculator is done in TL-Verilog. The calculator will have two 32-bit input data and one 3-bit opcode. Depending upon the opcode value, calculator operation is selected.
+  
+  The below snippet shows the implementation in MakerChip. Here all the working of the calculator is done in a single stage.
+  
+  <img src="images/calc_simple1.JPG" height="500">
+    
+  ## Pipelining 
+  The simple calculator developed above is pipelined using TL-Verilog. It seems very easy in TL-Verilog. No need of `always_ff @ (clk)` or any flip-flops, the pipelining can be done just by using `|calc` for defining pipiline and `@1` or `@2` for writing stages of pipeline. 
+  
+  The below snippet shows that in the pipeline Stage-1 is used for accepting inputs and Stage-2 for arithmetic operations.
+    
+  <img src="images/calc_pipelined1.JPG" height="500">
+    
+  ## Adding Validity
+  TL-Verilog supports a very unique feature called `validity`. Using validity, we can define tha condition when a specific signal will hold a valid content. The validity conditions is written using `?$valid_variable_name`.
+  
+  The below snippet shows the implementation of validity. The calculator operation will only be carried out when there is no reset and it is a valid cycle.
+  
+   <img src="images/calc_validity1.JPG" height="500">
+
 # Basic RISC-V Core
 
 # Pipelined RISC-V Core
