@@ -5,6 +5,9 @@
   - [Compiler Toolchain](#compiler-toolchain)
   - [Application Binary Interface](#application-binary-interface)
   - [RTL Design Using TL-Verilog and MakerChip](#rtl-design-using-tl-verilog-and-makerchip)
+      - [Designing a Simple Calculator](#designing-a-simple-calculator)
+      - [Pipelining the Calculator](#pipelining-the-calculator)
+      - [Adding Validity to Calculator](#adding-validity-to-calculator)
   - [Basic RISC-V Core](#basic-risc-v-core)
   - [Pipelined RISC-V Core](#pipelined-risc-v-core)
   - [Acknowledgement](#acknowledgement)
@@ -74,20 +77,55 @@ Following are some unique features of TL-Verilog :
   
   <img src="images/calc_simple1.JPG" height="500">
     
-  ## Pipelining 
+  ## Pipelining the Calculator
   The simple calculator developed above is pipelined using TL-Verilog. It seems very easy in TL-Verilog. No need of `always_ff @ (clk)` or any flip-flops, the pipelining can be done just by using `|calc` for defining pipiline and `@1` or `@2` for writing stages of pipeline. 
   
   The below snippet shows that in the pipeline Stage-1 is used for accepting inputs and Stage-2 for arithmetic operations.
     
   <img src="images/calc_pipelined1.JPG" height="500">
     
-  ## Adding Validity
+  ## Adding Validity to Calculator
   TL-Verilog supports a very unique feature called `validity`. Using validity, we can define tha condition when a specific signal will hold a valid content. The validity conditions is written using `?$valid_variable_name`.
   
   The below snippet shows the implementation of validity. The calculator operation will only be carried out when there is no reset and it is a valid cycle.
   
    <img src="images/calc_validity1.JPG" height="500">
+   
+   The detailed TL-Verilog code for the calculator can be found [here](Day3_5/calculator_solutions.tlv) 
 
 # Basic RISC-V Core
+  This section will cover the implementation of a simple 3-stage RISC-V Core / CPU. The 3-stages broadly are: Fetch, Decode and Execute.
+  The diagram below is the basic block of the CPU core.
+  
+   <img src="images/riscv_block_diagram.JPG" height="400">
+   
+   ## Program Counter and Instruction Fetch
+   Program Counter, also called as Instruction Pointer is a block which contains the address of the next instruction to be executed. It is feed to the instruction memory, which in turn gives out the instruction to be executed. The program counter is incremented by 4, every valid interation.
+   The output of the program counter is used for fetching an instruction from the instruction memory. The instruction memory gives out a 32-bit instruction depending upon the inout address.
+   The below snippet shows the Program Counter and Instruction Fetch Implementation in Makerchip.
+   
+   <img src="images/rv_pc_instr_fetch.JPG" height="500">
+   
+   ## Instruction Decode and Read Register File
+   The 32-bit fetched instruction has to be deocded first to determine the operation to be performed and the source / destination address. Instrcution Type is first identified on the opcode bits of instruction. The instruction type can R, I, S, B, U, J.
+   Every instruction has a fixed format defined in the RISC-V ISA. Depending on the formats, the following fields are determined:
+   - `opcode`, `funct3`, `funct7` -> Specifies the Operation
+   - `imm` -> Immediate values / Offsets
+   - `rs1`, `rs2` -> Source register index
+   - `rd` -> Destination regsiter index
+   
+   Generally, RISC-V ISA provides 32 Register each of width = `XLEN` (for example, XLEN = 32 for RV32) 
+   Here, the regsiter file used allows 2 - reads and 1 - write simultaneously.
+   
+   The below snippet shows the Decode and Read Register Implementation in Makerchip.
+   
+   <img src="images/rv_decode_rf.JPG" height="500">
+   
+   ## Execute Instruction and Write Register File
+   Depending upon the decoded operation, the instruction is executed. Arithmetic and Logical Unit (ALU) used if required. If the instruction is a branching instruction the target branch address is computed separately.
+   After the instruction is executed, the result of stored back to the Register File, depending upon the destination register index.
+   The below snippet shows the Instruction Execute and Write Register File Implementation in Makerchip.
+   
+   <img src="images/rv_execute_rf.JPG" height="500">
 
 # Pipelined RISC-V Core
