@@ -178,7 +178,7 @@ The code for the 3-stage simple RISC-V Core can be found [here](Day3_5/riscv_cor
   
   ## Final RISC-V Core
   
-  <img src="images/my_core.svg">
+  <img src="images/my_core1.svg">
   
   ## Code Comparison
   The SandPiper Compiler generated ~90,000 characters of SystemVerilog from ~25,000 characters of TL-Verilog. Among the ~90,000 characters of SystemVerilog, only ~18,000 is actual logic.
