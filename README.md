@@ -54,9 +54,11 @@ Mentioned below are steps to use RISC-V toolchain
 
 Below images show the toolchain implementaion for a small c program for sum of first 9 positive integers.
   1. RISC-V Toolchain: Compilation, Simulation and Debugging
+      
       <img src="Day2/d2_ss2.JPG" height="400"/>
       
   2. Viewing the assembly language code for generated object file.
+      
       <img src="Day2/d2_ss1.JPG" height="500"/>
 
 # Application Binary Interface
