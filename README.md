@@ -52,7 +52,7 @@ Mentioned below are steps to use RISC-V toolchain
   ### Debugging the object file using SPIKE:
     spike -d pk <object Filename>
 
-Below images show the toolchain implementaion for a small c program for sum of first 9 positive integers.
+Below images show the toolchain implementation for a small c program for sum of first 9 positive integers.
   1. RISC-V Toolchain: Compilation, Simulation and Debugging
       
       <img src="Day2/d2_ss2.JPG" height="400"/>
@@ -66,14 +66,14 @@ Every application program runs in a particular environment, which "Application E
 
 The Application Binary Interface is the sum total of what the application programmer needs to understand in order to write programs; the programmer does not have to understand or know what is going on within the Application Execution Environment.
 
-An Application Binary Interface would combine the processor ISA along with the OS system-call interface. The below images gives the list of registers, thier short description and ABI name of every register in RISC-V ISA.
+An Application Binary Interface would combine the processor ISA along with the OS system-call interface. The below snippet gives the list of registers, thier short description and ABI name of every register in RISC-V ISA.
  
    <img src="images/abi_names.JPG" height="600"/>
 
-# RTL Design Using TL-Verilog and MakerChip
+# RTL Design Using TL-Verilog and Makerchip
 [Makerchip](http://makerchip.com/) is a free online environment for developing high-quality integrated circuits. You can code, compile, simulate, and debug Verilog designs, all from your browser. Your code, block diagrams, and waveforms are tightly integrated.
 
-Following are some unique features of TL-Verilog :
+Following are some unique features of TL-Verilog:
   - Supports "Timing Abstraction"
   - Easy Pipelining
   - TL-Verilog removes the need always blocks, flip-flops.
@@ -84,19 +84,19 @@ Following are some unique features of TL-Verilog :
   ## Designing a Simple Calculator
   A simple implementation of a single stage basic calculator is done in TL-Verilog. The calculator will have two 32-bit input data and one 3-bit opcode. Depending upon the opcode value, calculator operation is selected.
   
-  The below snippet shows the implementation in MakerChip. Here all the working of the calculator is done in a single stage.
+  The below snippet shows the implementation in Makerchip. Here all the working of the calculator is done in a single stage.
   
   <img src="images/calc_simple1.JPG" height="500">
     
   ## Pipelining the Calculator
-  The simple calculator developed above is pipelined using TL-Verilog. It seems very easy in TL-Verilog. No need of `always_ff @ (clk)` or any flip-flops, the pipelining can be done just by using `|calc` for defining pipiline and `@1` or `@2` for writing stages of pipeline. 
+  The simple calculator developed above is pipelined using TL-Verilog. It seems very easy in TL-Verilog. No need of `always_ff @ (clk)` or any flip-flops, the pipelining can be done just by using `|calc` for defining pipeline and `@1` or `@2` for writing stages of pipeline. 
   
   The below snippet shows that in the pipeline Stage-1 is used for accepting inputs and Stage-2 for arithmetic operations.
     
   <img src="images/calc_pipelined1.JPG" height="500">
     
   ## Adding Validity to Calculator
-  TL-Verilog supports a very unique feature called `validity`. Using validity, we can define tha condition when a specific signal will hold a valid content. The validity conditions is written using `?$valid_variable_name`.
+  TL-Verilog supports a very unique feature called `validity`. Using validity, we can define tha condition when a specific signal will hold a valid content. The validity condition is written using `?$valid_variable_name`.
   
   The below snippet shows the implementation of validity. The calculator operation will only be carried out when there is no reset and it is a valid cycle.
   
@@ -111,22 +111,22 @@ Following are some unique features of TL-Verilog :
    <img src="images/riscv_block_diagram.JPG" height="400">
    
    ## Program Counter and Instruction Fetch
-   Program Counter, also called as Instruction Pointer is a block which contains the address of the next instruction to be executed. It is feed to the instruction memory, which in turn gives out the instruction to be executed. The program counter is incremented by 4, every valid interation.
-   The output of the program counter is used for fetching an instruction from the instruction memory. The instruction memory gives out a 32-bit instruction depending upon the inout address.
+   Program Counter, also called as Instruction Pointer is a block which contains the address of the next instruction to be executed. It is feed to the instruction memory, which in turn gives out the instruction to be executed. The program counter is incremented by 4, every valid iteration.
+   The output of the program counter is used for fetching an instruction from the instruction memory. The instruction memory gives out a 32-bit instruction depending upon the input address.
    The below snippet shows the Program Counter and Instruction Fetch Implementation in Makerchip.
    
    <img src="images/rv_pc_instr_fetch.JPG" height="500">
    
    ## Instruction Decode and Read Register File
-   The 32-bit fetched instruction has to be deocded first to determine the operation to be performed and the source / destination address. Instrcution Type is first identified on the opcode bits of instruction. The instruction type can R, I, S, B, U, J.
+   The 32-bit fetched instruction has to be decoded first to determine the operation to be performed and the source / destination address. Instruction Type is first identified on the opcode bits of instruction. The instruction type can R, I, S, B, U, J.
    Every instruction has a fixed format defined in the RISC-V ISA. Depending on the formats, the following fields are determined:
    - `opcode`, `funct3`, `funct7` -> Specifies the Operation
    - `imm` -> Immediate values / Offsets
    - `rs1`, `rs2` -> Source register index
-   - `rd` -> Destination regsiter index
+   - `rd` -> Destination register index
    
    Generally, RISC-V ISA provides 32 Register each of width = `XLEN` (for example, XLEN = 32 for RV32) 
-   Here, the regsiter file used allows 2 - reads and 1 - write simultaneously.
+   Here, the register file used allows 2 - reads and 1 - write simultaneously.
    
    The below snippet shows the Decode and Read Register Implementation in Makerchip.
    
@@ -153,14 +153,14 @@ The code for the 3-stage simple RISC-V Core can be found [here](Day3_5/riscv_cor
     @<pipe_stage>
        Instructions present in this stage
   
-  The are various hazards to be taken into consideration while implementing a pipelined design. Some of hazards taken under consideration are:
-   - Improper Updation of Program Counter (PC)
+  There are various hazards to be taken into consideration while implementing a pipelined design. Some of hazards taken under consideration are:
+   - Improper Updating of Program Counter (PC)
    - Read-before-Write Hazard
    
   ## Load and Store Data
-  A Data memory can be added to the Core. The Load-Store operations will add up a new stage to the core. Thus making it now a 4-Stage Core / CPU.
+  A Data memory can be added to the Core. The Load-Store operations will add up a new stage to the core. Thus, making it now a 4-Stage Core / CPU.
   
-  The proper functioning of the RISC-V core can ensured by introducing some testcases to the code. 
+  The proper functioning of the RISC-V core can be ensured by introducing some testcases to the code. 
   For example, if program for summation of positive integers from 1 to 9 and storing it to specific register can be verified by:
   
       *passed = |cpu/xreg[17]>>5$value == (1+2+3+4+5+6+7+8+9);
@@ -188,13 +188,13 @@ The code for the 3-stage simple RISC-V Core can be found [here](Day3_5/riscv_cor
   <img src="images/code_compare.JPG" height="500">
   
 # Future Work
-  The implemented core only support the RV32I Base Integer Instrcution Set. The design will further be modified for adding supports for all other operations and extensions like C, M, F.
+  The implemented core only supports the RV32I Base Integer Instruction Set. The design will further be modified for adding supports for all other operations and extensions like C, M, F.
   
   The decompress and decode logic for RV32C (extension C) is already been added to the design. The code can be found [here](Day3_5/riscv_core_with_compressed_instructions.tlv)
 
 # References
   - RISC-V ISA Manual: https://github.com/riscv/riscv-isa-manual/
-  - RISC-V : https://riscv.org/
+  - RISC-V: https://riscv.org/
   - Makerchip : https://makerchip.com/
   - VLSI System Design: https://www.vlsisystemdesign.com/
 
