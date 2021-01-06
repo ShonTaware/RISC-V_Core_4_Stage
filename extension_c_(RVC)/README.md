@@ -10,8 +10,8 @@
  
    <img src="images/rvc_instruction_formats.png" height="600"/>
    
-   - Further, a bit pattern ending in 11 indicates a 32-bit instruction. The other bit patterns (00, 01, 10) indicate a compressed instruction. This is for convention refered to as quadrant 0, quadrant 1 and quadrant 2.
-   - Each quadrant a set of fixed instructions defined in it. Below images show the quadrants and the instructions available in it.
+ - Further, a bit pattern ending in 11 indicates a 32-bit instruction. The other bit patterns (00, 01, 10) indicate a compressed instruction. This is for convention refered to as quadrant 0, quadrant 1 and quadrant 2.
+ - Each quadrant a set of fixed instructions defined in it. Below images show the quadrants and the instructions available in it.
    
    ## Quadrant 0
    <img src="images/rvc_q0.png" height="500"/>
@@ -19,7 +19,7 @@
    ## Quadrant 1
    <img src="images/rvc_q1.png" height="600"/>
 
-   ## Quadrant 1
+   ## Quadrant 2
    <img src="images/rvc_q2.png" height="500"/>
 
 
