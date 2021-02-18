@@ -1,8 +1,14 @@
-# RISC-V_MYTH_Workshop
+# RISC-V_MYTH_Workshop 
 
-For students of "Microprocessor for You in Thirty Hours" Workshop, offered by for VLSI System Design (VSD) and Redwood EDA, find here accompanying live info and links.
+## Description
+The current directory contains all the TL-Verilog scripts for the Day 3-5 of the workshop
 
-Refer to README at [stevehoover/RISC-V_MYTH_Workshop](https://github.com/stevehoover/RISC-V_MYTH_Workshop) for lab instructions.
-
-Add your codes in the [calculator_solutions.tlv](calculator_solutions.tlv) and [risc-v_solutions.tlv](risc-v_solutions.tlv) files and **keep committing** to your repository after every lab.
-
+  ### calculator_solutions.tlv  
+      • Pipelined Calculator with Validity and Recall previous
+  ### risc-v_solutions.tlv      
+      • 4 stage pipelined RISC-V Core with RV32I 
+  ### riscv_core_with_compressed_instructions.tlv  
+      • 4 stage pipelined RISC-V Core with support for compressed instructions. 
+      • Decompressing the instruction done as per RV32C
+  ### riscv_core_without_pipelining.tlv
+      • 4 stage simple RISC-V Core without pipeline
